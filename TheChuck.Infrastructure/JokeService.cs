@@ -39,5 +39,18 @@ public class JokeService : IJokeService
             throw new Exception("Det gick inte att hämta joke", ex);
         }
     }
+    public async Task<Joke?> GetCategory(string category)
+    {
+        string url = $"https://api.chucknorris.io/jokes/?category={category}";
+
+        try
+        {
+            return await _webClient.Get<Joke>(url) ?? new Joke();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Det gick inte att hämta joke", ex);
+        }
+    }
 
 }
